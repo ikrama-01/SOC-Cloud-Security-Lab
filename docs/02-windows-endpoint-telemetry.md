@@ -1,4 +1,4 @@
-# 02 — Windows Endpoint & Telemetry Pipeline
+# 02 - Windows Endpoint & Telemetry Pipeline
 
 ## 1. Objective
 
@@ -198,14 +198,16 @@ The next phase will introduce:
 
 ## Screenshots
 
-Recommended evidence:
+![Screenshot](screenshots/windows/windows-security-events.png)
 
-- `screenshots/windows/security-event-viewer.png`
-- `screenshots/sentinel/windows-security-events-ama.png`
-- `screenshots/sentinel/dcr-common.png`
-- `screenshots/sentinel/securityevent-4624.png`
+![Screenshot](screenshots/sentinel/connector-details-1.png)
 
-The final KQL screenshot is particularly important because it demonstrates that the telemetry was not merely configured—it was actually received and queried.
+![Screenshot](screenshots/sentinel/connector-details-2.png)
+
+![Screenshot](screenshots/sentinel/security-event-4624.png)
+
+
+The final KQL screenshot is particularly important because it demonstrates that the telemetry was not merely configured - it was actually received and queried.
 
 ## Lessons Learned
 
