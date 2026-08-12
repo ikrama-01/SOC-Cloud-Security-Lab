@@ -1,6 +1,6 @@
 # Architecture Diagram
 
-## Day 1 — Azure SOC Foundation
+## Day 1 - Azure SOC Foundation
 
 ```mermaid
 flowchart TB
@@ -34,11 +34,11 @@ flowchart TB
 
 The lab is intentionally separated into:
 
-1. **Network layer** — VNet, subnet, NSG and public management path.
-2. **Endpoint layer** — Windows endpoint producing security telemetry.
-3. **Collection layer** — AMA and DCR.
-4. **Data layer** — Log Analytics and `SecurityEvent`.
-5. **SOC layer** — Microsoft Sentinel.
+1. **Network layer** - VNet, subnet, NSG and public management path.
+2. **Endpoint layer** - Windows endpoint producing security telemetry.
+3. **Collection layer** - AMA and DCR.
+4. **Data layer** - Log Analytics and `SecurityEvent`.
+5. **SOC layer** - Microsoft Sentinel.
 
 This separation makes it easier to understand where a failure occurs.
 
