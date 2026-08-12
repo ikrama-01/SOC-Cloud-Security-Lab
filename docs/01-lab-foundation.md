@@ -1,4 +1,4 @@
-# 01 — Lab Foundation
+# 01 - Lab Foundation
 
 ## 1. Purpose
 
@@ -129,17 +129,8 @@ The first monitored endpoint is:
 - OS: Windows 11 Pro, version 25H2
 - Size: Standard `B2als_v2`
 - Architecture: x64
-- Security type: Trusted Launch
-- Secure Boot: Enabled
-- vTPM: Enabled
 - OS disk: Standard SSD LRS
-- Managed identity: Enabled
-- Entra ID VM login: Disabled initially
-- Backup: Disabled
-- Site Recovery: Disabled
-- Boot diagnostics: Enabled
-- Auto-shutdown: Enabled
-
+  
 The VM was deliberately kept small and cost-conscious because it is a learning endpoint rather than a production workload.
 
 The Azure portal showed an estimated compute price of `$0.0246/hour` at deployment time. This is not the complete lab cost because storage, public IP and other billable resources can have separate charges.
@@ -180,13 +171,14 @@ The next phase connected the Windows Security log to Log Analytics and Sentinel 
 
 ## Screenshots
 
-Suggested screenshots:
+![Screenshot](screenshots/azure/resource-group.png)
 
-- `screenshots/azure/resource-group.png`
-- `screenshots/azure/sentinel-workspace.png`
-- `screenshots/azure/vm-review.png`
-- `screenshots/azure/nsg-rdp-restricted.png`
-- `screenshots/windows/security-event-viewer.png`
+![Screenshot](screenshots/azure/sentinel-workspace.png)
+
+![Screenshot](screenshots/azure/vm-review.png)
+
+![Screenshot](screenshots/windows/windows-security-events.png)
+
 
 ## Lessons Learned
 
