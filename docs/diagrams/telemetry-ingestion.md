@@ -1,6 +1,6 @@
 # Windows Security Telemetry Ingestion Flow
 
-## End-to-end data flow
+## End-to-end Windows data flow
 
 ```mermaid
 flowchart LR
@@ -11,15 +11,9 @@ flowchart LR
     E["Log Analytics Workspace<br/>LAW-SOC-LAB"]
     F["SecurityEvent"]
     G["Microsoft Sentinel"]
-    H["KQL"]
+    H["KQL investigation"]
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
+    A --> B --> C --> D --> E --> F --> G --> H
 ```
 
 ## Current configuration
@@ -35,11 +29,11 @@ flowchart LR
 | Retention at configuration | 30 days |
 | SIEM | Microsoft Sentinel |
 
-## Validation example
+## Validation examples
+
+### Successful logon
 
 A controlled logon generated Event ID `4624`.
-
-The same event was then found centrally with:
 
 ```kusto
 SecurityEvent
@@ -48,4 +42,31 @@ SecurityEvent
 | take 10
 ```
 
-This confirms the telemetry path is operational.
+### Failed network logon
+
+The detection phase used Event ID `4625` with Logon Type `3`.
+
+```kusto
+SecurityEvent
+| where Computer == "VM-SOC-WIN01"
+| where EventID == 4625
+| where LogonType == 3
+```
+
+### Multi-account aggregation
+
+```kusto
+SecurityEvent
+| where Computer == "VM-SOC-WIN01"
+| where EventID == 4625
+| where LogonType == 3
+| summarize FailedAttempts = count(),
+            TargetAccounts = dcount(TargetUserName),
+            Accounts = make_set(TargetUserName,20),
+            FirstSeen = min(TimeGenerated),
+            LastSeen = max(TimeGenerated)
+    by IpAddress, bin(TimeGenerated,5m)
+| where FailedAttempts >=5 and TargetAccounts >=3
+```
+
+These queries demonstrate the progression from raw telemetry to detection-oriented aggregation.
